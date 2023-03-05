@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime, date
 # Create your models here.
+
 class Category(models.Model):
     name = models.CharField(max_length=30, verbose_name='Название категории')
     def __str__(self):

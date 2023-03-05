@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
-from django.shortcuts import render, redirect
-# Create your views here.
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+
+from .models import Item, Purchase
+
 def index(request):
     return HttpResponse(
         '''
@@ -16,10 +19,15 @@ def index(request):
 
     )
 
-#
-# if request.method == 'POST':
-#     form = PostForm(request.POST)
-#     messages.success(request, "A new project 'Shop' has been created successfully.")
-#     return redirect('posts')
-# else:
-#     return render(request, 'blog/post_form.html',{'form':form}')
+def list_item(request):
+    item = Item.objects.all().order_by('-name')[:5]
+    context = {
+        'items': item
+    }
+    return render(request, 'list_item.html', context)
+def detail_item(request, item_id):
+    purchase = get_object_or_404(Purchase, id=item_id)
+    purchase_list = Purchase.objects.filter(item_id=item_id)
+    return render(request, 'detail_item.html', {'purchase': purchase, 'purchase_list': purchase_list})
+
+

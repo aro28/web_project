@@ -2,8 +2,10 @@
 
 {% load static %}
 
-{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
-
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }} {% endblock %}
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin_color.css" %}"/>
+{% endblock %}
 
 {% block branding %}
 <h1 id="site-name">
@@ -13,7 +15,9 @@
 
 </h1>
 {% endblock %}
- {% block extrahead %}
+{% block extrahead %}
         <link rel="shortcut icon" href="{% static 'favicon2.ico'  %}" />
-    {% endblock %}
+{% endblock %}
+
+
 {% block nav-global %}{% endblock %}
