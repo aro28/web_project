@@ -10,15 +10,24 @@
 <body>
 <form>
 <h1> Детализация товара: </h1>
+{% if item %}
+        Продукт: {{item.name}}, Цена:{{item.price}} kgs
+{% else %}
+    <p>No purchases are available.</p>
 
-        Продукт: {{purchase.item.name}}, Цена:{{purchase.item.price}} kgs
-
+{% endif %}
 </form>
-<h3> Все покупатели купившие {{purchase.item.name}}: </h3>
+
+<h3> Все покупатели купившие {{item.name}}: </h3>
 <form>
-    {% for purchase in purchase_list %}
-            {{purchase.name}}
-    {% endfor %}
+    {% if purchase_detail %}
+            {% for purchase in purchase_detail %}
+                    {{purchase.name}}
+            {% endfor %}
+    {% else %}
+        <p>No purchases are available.</p>
+
+    {% endif %}
 </form>
 </body>
 </html>

@@ -11,8 +11,11 @@
 <body>
 {% if items %}
     <ul>
+        <h1> Информация обо всех item</h1>
     {% for item in items %}
-        {{ item }}
+
+        <p>Имя продукта: <i> {{ item.name}} Цена: {{item.price}}</i> </p>
+
     {% endfor %}
     </ul>
 {% else %}

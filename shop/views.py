@@ -26,8 +26,8 @@ def list_item(request):
     }
     return render(request, 'list_item.html', context)
 def detail_item(request, item_id):
-    purchase = get_object_or_404(Purchase, id=item_id)
-    purchase_list = Purchase.objects.filter(item_id=item_id)
-    return render(request, 'detail_item.html', {'purchase': purchase, 'purchase_list': purchase_list})
+    item = get_object_or_404(Item, id=item_id)
+    purchase_detail = Purchase.objects.filter(item_id=item_id)
+    return render(request, 'detail_item.html', {'item': item, 'purchase_detail': purchase_detail})
 
 
